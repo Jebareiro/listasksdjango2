@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="my-5">
+    <h1 class="text-center text-primary">Lista de Tareas</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Título</th>
+                    <th>Contenido</th>
+                    <th colspan="3" class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.content }}</td>
+                    <td><a href="{% url 'tasks:detail' task.id %}" class="btn btn-info btn-sm">Detalles</a></td>
+                    <td><a href="{% url 'tasks:edit' task.id %}" class="btn btn-warning btn-sm">Editar</a></td>
+                    <td><a href="{% url 'tasks:delete' task.id %}" class="btn btn-danger btn-sm">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'tasks:create' %}" class="btn btn-success">Crear Nuevo</a>
+    </div>
+</div>
+{% endblock %}
