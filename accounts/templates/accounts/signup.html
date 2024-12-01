@@ -1,10 +1,29 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h2>Registrar usuario</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" value="registrar">
-</form>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg">
+        <div class="card-header bg-dark text-white text-center">
+          <h2>Registrar Usuario</h2>
+        </div>
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              {{ form.as_p }}
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer text-center">
+          <p class="text-muted">¿Ya tienes una cuenta? <a href="{% url 'login' %}">Inicia sesión aquí</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

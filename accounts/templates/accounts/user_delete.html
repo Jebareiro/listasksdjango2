@@ -1,27 +1,51 @@
 {% extends "base.html" %}
 
 {% block main %}
-<table>
-  <tbody>
-    <tr>
-      <th>Nombre de usuario</th>
-      <td>{{ user.username }}</td>
-    </tr>
-    <tr>
-      <th>Direccion de email</th>
-      <td>{{ user.email }}</td>
-    </tr>
-    <tr>
-      <th>Edad</th>
-      <td>{{ user.age }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg rounded-3 border-0">
+        <div class="card-header" style="background-color: #2C3E50; color: white; text-align: center;">
+          <h3 class="mb-0">¿Por qué te vas?</h3>
+          <p class="lead">Lamentamos verte ir. Si tienes alguna sugerencia, ¡nos encantaría saberla para mejorar!</p>
+        </div>
+        <div class="card-body" style="background-color: #ffffff;">
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <th>Nombre de usuario</th>
+                <td>{{ user.username }}</td>
+              </tr>
+              <tr>
+                <th>Dirección de email</th>
+                <td>{{ user.email }}</td>
+              </tr>
+              <tr>
+                <th>Edad</th>
+                <td>{{ user.age }}</td>
+              </tr>
+            </tbody>
+          </table>
 
-<form action="{% url 'user_delete' user.id %}" method="post">
-  {% csrf_token %}
-  <input type="submit" value="dar de baja">
-</form>
-
-<a href="{% url 'user_detail' user.id %}">Volver</a>
+          <form action="{% url 'user_delete' user.id %}" method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="alert alert-warning text-center" role="alert">
+              <strong>Advertencia:</strong> Esta acción no se puede deshacer.
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash"></i> Confirmar Baja
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer text-center" style="background-color: #ffffff;">
+          <a href="{% url 'user_detail' user.id %}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left-circle"></i> Volver
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

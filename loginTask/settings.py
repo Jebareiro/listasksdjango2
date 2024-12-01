@@ -92,10 +92,15 @@ USE_TZ = True
 
 # Archivos estáticos (CSS, JavaScript, imágenes)
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]  # Asegúrate de que esté configurado para la ruta correcta
 
-# Configuración para iniciar sesión
-LOGIN_URL = '/signin'
 
+# Configuración para iniciar sesión y cerrar sesión
+LOGIN_URL = '/signin/'  # Ruta del formulario de inicio de sesión
+LOGIN_REDIRECT_URL = '/tasks/'  # Página a la que se redirige después de un login exitoso
+LOGOUT_REDIRECT_URL = '/signin/'  # Página a la que se redirige después de cerrar sesión
+
+# Modelo de usuario personalizado
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # Configuración de la clave primaria para los modelos
